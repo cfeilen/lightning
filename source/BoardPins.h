@@ -104,9 +104,9 @@ public:
 
     /// Enum of function lock actions.
     const enum FUNC_LOCK_ACTION {
-        NO_LOCK_CHANGE,         ///< Don't take any lock action
-        LOCK_FUNCTION,          ///< Lock the pin to this function
-        UNLOCK_FUNCTION         ///< Unlock the pin function
+        NO_LOCK_CHANGE = 0,     ///< Don't take any lock action
+        LOCK_FUNCTION = 1,      ///< Lock the pin to this function
+        UNLOCK_FUNCTION = 2     ///< Unlock the pin function
     };
 
     /// Enum of board types.

@@ -108,6 +108,9 @@
     <ClCompile Include="..\SDKFromArduino\source\WString.cpp">
       <Filter>SDKFromArduino\source</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\LightningCAPIs.cpp">
+      <Filter>Lightning\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -254,5 +257,8 @@
       <Filter>SDKFromArduino\include</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Lightning.h" />
+    <ClInclude Include="..\source\LightningCAPIs.h">
+      <Filter>Lightning\include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
