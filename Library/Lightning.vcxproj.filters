@@ -253,8 +253,6 @@
     <ClInclude Include="..\SDKFromArduino\include\WString.h">
       <Filter>SDKFromArduino\include</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Lightning.h">
-      <Filter>Lightning\include</Filter>
-    </ClInclude>
+    <ClInclude Include="..\source\Lightning.h" />
   </ItemGroup>
 </Project>
