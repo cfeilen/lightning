@@ -159,7 +159,6 @@
     <ClInclude Include="..\source\I2cTransaction.h" />
     <ClInclude Include="..\source\I2cTransfer.h" />
     <ClInclude Include="..\source\Lightning.h" />
-    <ClInclude Include="..\source\LightningCAPIs.h" />
     <ClInclude Include="..\source\MCP3008support.h" />
     <ClInclude Include="..\source\MuxDefs.h" />
     <ClInclude Include="..\source\NetworkSerial.h" />
@@ -197,7 +196,6 @@
     <ClCompile Include="..\source\I2c.cpp" />
     <ClCompile Include="..\source\I2cController.cpp" />
     <ClCompile Include="..\source\I2cTransaction.cpp" />
-    <ClCompile Include="..\source\LightningCAPIs.cpp" />
     <ClCompile Include="..\source\NetworkSerial.cpp" />
     <ClCompile Include="..\source\PCA9685Support.cpp" />
     <ClCompile Include="..\source\PulseIn.cpp" />

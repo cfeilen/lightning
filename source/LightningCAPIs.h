@@ -11,6 +11,6 @@
 extern "C" {
 
 /// Verify the function of each MBM pin
-LIGHTNING_DLL_API HRESULT __cdecl MBMVerifyPinFunction(unsigned int mappedPin, unsigned int function, unsigned int lockAction);
+LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMVerifyPinFunction(unsigned int mappedPin, unsigned int function, unsigned int lockAction);
 
 } // extern "C"
