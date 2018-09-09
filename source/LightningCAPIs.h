@@ -10,7 +10,8 @@
 
 extern "C" {
 
-/// Verify the function of each MBM pin
+LIGHTNING_CAPI_DLL_API HRESULT __cdecl IsLightningEnabled(bool *result);
+
 LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMVerifyPinFunction(unsigned int mappedPin, unsigned int function, unsigned int lockAction);
 
 LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMSetPinMode(unsigned int mappedPin, unsigned int mode, bool pullUp);

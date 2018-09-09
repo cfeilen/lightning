@@ -70,7 +70,8 @@ HardwareSerial::HardwareSerial()
 /// Destructor.
 HardwareSerial::~HardwareSerial()
 {
-    end();
+    // temp (alecont)
+    //end();
 }
 
 HardwareSerial & HardwareSerial::operator= (HardwareSerial &) { return *this; }

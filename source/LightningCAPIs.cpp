@@ -9,6 +9,20 @@
 #include <memory>
 #include <vector>
 
+HRESULT __cdecl IsLightningEnabled(bool *result)
+{
+    ULONG state;
+    *result = true;
+    if (g_pins.getPinState(10, state) == DMAP_E_DEVICE_NOT_FOUND_ON_SYSTEM)
+    {
+        *result = false;
+    }
+
+    return S_OK;
+}
+
+
+
 HRESULT __cdecl MBMVerifyPinFunction(unsigned int mappedPin, unsigned int function, unsigned int lockAction)
 {
     auto res = g_pins.verifyPinFunction(mappedPin, function, static_cast<BoardPinsClass::FUNC_LOCK_ACTION>(lockAction));
