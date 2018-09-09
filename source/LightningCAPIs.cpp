@@ -9,6 +9,21 @@
 #include <memory>
 #include <vector>
 
+struct RoInitWrapper
+{
+    RoInitWrapper()
+    {
+        RoInitialize(RO_INIT_MULTITHREADED);
+    }
+
+    ~RoInitWrapper()
+    {
+        RoUninitialize();
+    }
+};
+
+RoInitWrapper initWinRT;
+
 HRESULT __cdecl IsLightningEnabled(bool *result)
 {
     ULONG state;
