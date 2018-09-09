@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Microsoft.IoT.Lightning</id>
-    <version>1.1.0</version>
+    <version>1.2.0-beta2</version>
     <title>Microsoft IoT Lightning SDK</title>
     <authors>Microsoft Open Technologies, Inc.</authors>
     <owners>Microsoft Open Technologies, Inc.</owners>
@@ -20,6 +20,7 @@
 
     <file target="build\native\Microsoft.IoT.Lightning.targets"                      src="Microsoft.IoT.Lightning.targets" />
     <file target="lib\uap10.0\Microsoft.IoT.Lightning.Providers.winmd"               src="..\Library\Release\Microsoft.Iot.Lightning.Providers\Microsoft.IoT.Lightning.Providers.winmd" />
+    <file target="lib\netcore50\LightningWin32.dll"                                  src="..\LibraryWin32\Release\LightningWin32.dll" />
 
     <file target="runtimes\win10-x86\native\Lightning.dll"                           src="..\Library\Release\Lightning\Lightning.dll" />
     <file target="runtimes\win10-arm\native\Lightning.dll"                           src="..\Library\ARM\Release\Lightning\Lightning.dll" />
@@ -29,6 +30,9 @@
     <file target="runtimes\win10-arm\native\Microsoft.IoT.Lightning.Providers.dll"   src="..\Library\ARM\Release\Microsoft.Iot.Lightning.Providers\Microsoft.IoT.Lightning.Providers.dll" />
     <file target="runtimes\win10-x64\native\Microsoft.IoT.Lightning.Providers.dll"   src="..\Library\x64\Release\Microsoft.Iot.Lightning.Providers\Microsoft.IoT.Lightning.Providers.dll" />
 
+    <file target="runtimes\win10-x86\native\LightningWin32.dll"                      src="..\LibraryWin32\Release\LightningWin32.dll" />
+    <file target="runtimes\win10-x64\native\LightningWin32.dll"                      src="..\LibraryWin32\x64\Release\LightningWin32.dll" />
+    
     <file target="lib\win10-x86\native\Lightning.lib"                                src="..\Library\Release\Lightning\Lightning.lib" />
     <file target="lib\win10-arm\native\Lightning.lib"                                src="..\Library\ARM\Release\Lightning\Lightning.lib" />
     <file target="lib\win10-x64\native\Lightning.lib"                                src="..\Library\x64\Release\Lightning\Lightning.lib" />
