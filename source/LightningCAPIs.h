@@ -37,4 +37,8 @@ LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMI2cWriteRead(int handle, unsigned char
 LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMI2cWriteReadPartial(int handle, unsigned char *writeBuffer, int writeBufferLength, unsigned char *readBuffer, int readBufferLength,
     unsigned int *bytesTransferred, unsigned int *status);
 
+LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMSpiInit(unsigned int mode, int clockFrequency, int dataBitLength, int *handle);
+
+LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMSpiClose(int handle);
+
 } // extern "C"

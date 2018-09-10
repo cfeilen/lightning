@@ -6,6 +6,7 @@
 
 #include "LightningCAPIs.h"
 #include "BtI2cController.h"
+#include "BtSpiController.h"
 #include <memory>
 #include <vector>
 
@@ -63,6 +64,8 @@ HRESULT __cdecl MBMGetPinState(unsigned int mappedPin, unsigned int *state)
     *state = value;
     return res;
 }
+
+// I2C
 
 struct I2cState
 {
@@ -373,6 +376,94 @@ HRESULT __cdecl MBMI2cWriteReadPartial(int handle, unsigned char *writeBuffer, i
     {
         *status = TransferStatus::PartialTransfer;
     }
+
+    return S_OK;
+}
+
+// SPI
+
+struct SpiState
+{
+    std::unique_ptr<BtSpiControllerClass> controller;
+    int chipSelectPinMapped = 0;
+
+    bool is_empty() const
+    {
+        return !controller;
+    }
+
+    void clear()
+    {
+        controller.reset(nullptr);
+        chipSelectPinMapped = 0;
+    }
+};
+
+std::vector<SpiState> spiStates;
+
+
+HRESULT __cdecl MBMSpiInit(unsigned int mode, int clockFrequency, int dataBitLength, int *handle)
+{
+    *handle = -1;
+
+    BoardPinsClass::BOARD_TYPE board;
+    HRESULT hr = g_pins.getBoardType(board);
+
+    if (FAILED(hr)) { return hr; }
+    if (board != BoardPinsClass::BOARD_TYPE::MBM_BARE) { return E_NOTIMPL; }
+
+    SpiState spiState;
+
+    spiState.controller.reset(new BtSpiControllerClass());
+    hr = spiState.controller->configurePins(MBM_PIN_MISO, MBM_PIN_MOSI, MBM_PIN_SCK);
+    if (FAILED(hr)) { return hr; }
+
+    // Set the SPI bit shifting order to MSB
+    spiState.controller->setMsbFirstBitOrder();
+
+    hr = spiState.controller->begin(EXTERNAL_SPI_BUS, mode, (ULONG)(clockFrequency / 1000.0), dataBitLength);
+    if (FAILED(hr)) { return hr; }
+
+    // For MBM, the only SPI CS pin is MBM_PIN_CS0
+    spiState.chipSelectPinMapped = MBM_PIN_CS0;
+
+    // Open the chip select pin
+    hr = MBMSetPinMode(spiState.chipSelectPinMapped, DIRECTION_OUT, false);
+    if (FAILED(hr)) { return hr; }
+
+    // find available handle
+    int i = 0;
+    while (i < spiStates.size() && !spiStates[i].is_empty())
+    {
+        ++i;
+    }
+    if (i < spiStates.size())
+    {
+        spiStates[i] = std::move(spiState);
+    }
+    else
+    {
+        spiStates.push_back(std::move(spiState));
+    }
+    *handle = i;
+
+    return S_OK;
+}
+
+HRESULT __cdecl MBMSpiClose(int handle)
+{
+    if (handle < 0 || handle >= spiStates.size())
+    {
+        // we assume the handle was released already...
+        return S_OK;
+    }
+    auto &spi = spiStates[handle];
+
+    if (spi.controller)
+    {
+        spi.controller->revertPinsToGpio();
+    }
+    spi.clear();
 
     return S_OK;
 }
