@@ -467,3 +467,27 @@ HRESULT __cdecl MBMSpiClose(int handle)
 
     return S_OK;
 }
+
+HRESULT __cdecl MBMSpiTransferFullDuplex(int handle, unsigned char *writeBuffer, int writeBufferLength, unsigned char *readBuffer, int readBufferLength)
+{
+    // Prerequisites enforced by the caller:
+    //  1) At least one of writeBuffer or ReadBuffer is valid
+    //  2) If both read and write buffers are provided, they must have equal sizes
+
+    if (handle < 0 || handle >= spiStates.size())
+    {
+        return E_HANDLE;
+    }
+    auto &spi = spiStates[handle];
+
+    HRESULT hr = MBMSetPinState(spi.chipSelectPinMapped, LOW);
+    if (FAILED(hr)) { return hr; }
+
+    auto bufferLength = writeBuffer ? writeBufferLength : readBufferLength;
+    hr = spi.controller->transferBuffer(writeBuffer, readBuffer, bufferLength);
+
+    // Regardless of the return result, take the chip select high to de-select the device (and disregard hr)
+    MBMSetPinState(spi.chipSelectPinMapped, HIGH);
+
+    return hr;
+}

@@ -41,4 +41,6 @@ LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMSpiInit(unsigned int mode, int clockFr
 
 LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMSpiClose(int handle);
 
+LIGHTNING_CAPI_DLL_API HRESULT __cdecl MBMSpiTransferFullDuplex(int handle, unsigned char *writeBuffer, int writeBufferLength, unsigned char *readBuffer, int readBufferLength);
+
 } // extern "C"
