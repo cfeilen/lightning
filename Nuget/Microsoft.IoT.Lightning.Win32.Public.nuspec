@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Microsoft.IoT.Lightning</id>
-    <version>1.1.0</version>
+    <id>Microsoft.IoT.Lightning.Win32</id>
+    <version>1.1.1-Beta1</version>
     <title>Microsoft IoT Lightning SDK</title>
     <authors>Microsoft Open Technologies, Inc.</authors>
     <owners>Microsoft Open Technologies, Inc.</owners>
@@ -19,19 +19,12 @@
   <files>
 
     <file target="build\native\Microsoft.IoT.Lightning.targets"                      src="Microsoft.IoT.Lightning.targets" />
-    <file target="lib\uap10.0\Microsoft.IoT.Lightning.Providers.winmd"               src="..\Public\x86\Microsoft.IoT.Lightning.Providers.winmd" />
 
-    <file target="runtimes\win10-x86\native\Lightning.dll"                           src="..\Public\x86\signed\Lightning.dll" />
-    <file target="runtimes\win10-arm\native\Lightning.dll"                           src="..\Public\ARM\signed\Lightning.dll" />
-    <file target="runtimes\win10-x64\native\Lightning.dll"                           src="..\Public\x64\signed\Lightning.dll" />
 
-    <file target="runtimes\win10-x86\native\Microsoft.IoT.Lightning.Providers.dll"   src="..\Public\x86\signed\Microsoft.IoT.Lightning.Providers.dll" />
-    <file target="runtimes\win10-arm\native\Microsoft.IoT.Lightning.Providers.dll"   src="..\Public\ARM\signed\Microsoft.IoT.Lightning.Providers.dll" />
-    <file target="runtimes\win10-x64\native\Microsoft.IoT.Lightning.Providers.dll"   src="..\Public\x64\signed\Microsoft.IoT.Lightning.Providers.dll" />
-
-    <file target="lib\win10-x86\native\Lightning.lib"                                src="..\Public\x86\Lightning.lib" />
-    <file target="lib\win10-arm\native\Lightning.lib"                                src="..\Public\ARM\Lightning.lib" />
-    <file target="lib\win10-x64\native\Lightning.lib"                                src="..\Public\x64\Lightning.lib" />
+    <file target="runtimes\win10-x86\lib\uap10.0\LightningWin32.dll"                 src="..\Public\x86\signed\LightningWin32.dll" />" />
+    <file target="runtimes\win10-x64\lib\uap10.0\LightningWin32.dll"                 src="..\Public\x64\signed\LightningWin32.dll" />
+    <file target="runtimes\win10-x86\lib\netcoreapp2.1\LightningWin32.dll"           src="..\Public\signed\LightningWin32.dll" />
+    <file target="runtimes\win10-x64\lib\netcoreapp2.1\LightningWin32.dll"           src="..\Public\x64\signed\LightningWin32.dll" />
 
     <file target="include"                                                           src="..\Source\*.h" />
     <file target="include\avr"                                                       src="..\Source\avr\*.h" />

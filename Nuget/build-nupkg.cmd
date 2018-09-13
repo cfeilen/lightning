@@ -1,6 +1,7 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
 set NUSPEC="Microsoft.IoT.Lightning.nuspec"
+set NUSPEC_WIN32="Microsoft.IoT.Lightning.Win32.nuspec"
 
 :: Parse options
 :GETOPTS
@@ -8,8 +9,8 @@ set NUSPEC="Microsoft.IoT.Lightning.nuspec"
  if /I "%~1" == "/Help" goto USAGE
  if /I "%~1" == "/clean" set CLEAN=1
  if /I "%~1" == "/nopack" set NOPACK=1
- if /I "%~1" == "/debug" set NUSPEC="Microsoft.IoT.Lightning.Debug.nuspec"
- if /I "%~1" == "/public" set NUSPEC="Microsoft.IoT.Lightning.Public.nuspec"
+ if /I "%~1" == "/debug" set NUSPEC="Microsoft.IoT.Lightning.Debug.nuspec" && NUSPEC_WIN32="Microsoft.IoT.Lightning.Win32.Debug.nuspec" 
+ if /I "%~1" == "/public" set NUSPEC="Microsoft.IoT.Lightning.Public.nuspec" && NUSPEC_WIN32="Microsoft.IoT.Lightning.Win32.Public.nuspec"
  shift
 if not (%1)==() goto GETOPTS
 
@@ -29,7 +30,7 @@ IF ERRORLEVEL 1 (
     goto err
 )
 nuget pack %NUSPEC% -NoPackageAnalysis || goto err
-
+nuget pack %NUSPEC_WIN32% -NoPackageAnalysis || goto err
 :end
 
 echo Success
