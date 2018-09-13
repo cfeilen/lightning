@@ -6,6 +6,8 @@
 
 #pragma once
 
+#ifndef NOSERIAL
+
 /// /brief Switch for network serial instead of hardware serial.
 /// /details When the application indicates it wants network serial
 /// instead of hardware serial. Some libraries will directly include
@@ -246,5 +248,7 @@ private:
 LIGHTNING_DLL_API extern HardwareSerial Serial;    ///< This variable provides global access to this
                                  /// pseudo-static class, which is instantiated in
                                  /// the .cpp file.
+
+#endif
 
 #endif

@@ -6,7 +6,7 @@
 
 #include "arduino.h"
 
-#ifndef USE_NETWORKSERIAL
+#if !defined(NOSERIAL) && !defined(USE_NETWORKSERIAL)
 
 #if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)   // If building a UWP app:
 #define FORMAT_MESSAGE_ALLOCATE_BUFFER 0x00000100       // From WinBase.h

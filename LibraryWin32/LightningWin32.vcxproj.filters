@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -88,6 +88,9 @@
       <Filter>Lightning\source</Filter>
     </ClCompile>
     <ClCompile Include="..\source\arduino.cpp">
+      <Filter>Lightning\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\LightningCAPIs.cpp">
       <Filter>Lightning\source</Filter>
     </ClCompile>
     <ClCompile Include="..\SDKFromArduino\source\IPAddress.cpp">
@@ -215,6 +218,9 @@
       <Filter>Lightning\include</Filter>
     </ClInclude>
     <ClInclude Include="..\source\I2cTransaction.h">
+      <Filter>Lightning\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\LightningCAPIs.h">
       <Filter>Lightning\include</Filter>
     </ClInclude>
     <ClInclude Include="..\SDKFromArduino\include\binary.h">
