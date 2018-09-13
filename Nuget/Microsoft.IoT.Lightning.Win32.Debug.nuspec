@@ -17,7 +17,7 @@
   </metadata>
   <files>
 
-    <file target="build\native\Microsoft.IoT.Lightning.targets"                      src="Microsoft.IoT.Lightning.targets" />
+    <file target="build\native\Microsoft.IoT.Lightning.Win32.targets"                src="Microsoft.IoT.Lightning.targets" />
 
 
     <file target="runtimes\win10-x86\lib\uap10.0\LightningWin32.dll"                 src="..\LibraryWin32\Debug\LightningWin32.dll" />
