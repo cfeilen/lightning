@@ -34,6 +34,18 @@ goto next-arg
 if defined WindowsSDKDir goto select-target
 if defined VCINSTALLDIR goto select-target
 
+@rem Look for Visual Studio 2017
+if not exist "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" goto vc-set-2015
+for /f "usebackq tokens=1* delims=: " %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild`) do (
+  if /i "%%i"=="installationPath" set InstallDir=%%j
+)
+if not exist "%InstallDir%\VC\Auxiliary\Build\vcvars32.bat" goto vc-set-2015
+call "%InstallDir%\VC\Auxiliary\Build\vcvars32.bat" %vs_toolset%
+set GYP_MSVS_VERSION=2017
+echo Using Visual Studio 2017
+goto select-target
+
+:vc-set-2015
 @rem Look for Visual Studio 2015
 if not defined VS140COMNTOOLS goto vc-set-2013
 if not exist "%VS140COMNTOOLS%\..\..\vc\vcvarsall.bat" goto vc-set-2013
@@ -102,6 +114,11 @@ if errorlevel 1 exit /b 1
 msbuild Library\Lightning.sln /m /t:%target% /p:Configuration=%config% /p:Platform=x86 /clp:NoSummary;NoItemAndPropertyList;Verbosity=minimal /nologo
 if errorlevel 1 exit /b 1
 msbuild Library\Lightning.sln /m /t:%target% /p:Configuration=%config% /p:Platform=x64 /clp:NoSummary;NoItemAndPropertyList;Verbosity=minimal /nologo
+if errorlevel 1 exit /b 1
+
+msbuild LibraryWin32\LightningWin32.sln /m /t:%target% /p:Configuration=%config% /p:Platform=x86 /clp:NoSummary;NoItemAndPropertyList;Verbosity=minimal /nologo
+if errorlevel 1 exit /b 1
+msbuild LibraryWin32\LightningWin32.sln /m /t:%target% /p:Configuration=%config% /p:Platform=x64 /clp:NoSummary;NoItemAndPropertyList;Verbosity=minimal /nologo
 if errorlevel 1 exit /b 1
 
 :pack
